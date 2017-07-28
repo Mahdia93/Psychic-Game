@@ -5,7 +5,10 @@
 		var guessesLeft = 9;
 		var yourGuessesSoFar = [];
 
-		var computerChoices = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+		var computerChoices = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 
+		'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+
+		var randomComputerChoice = computerChoices [(Math.floor(computerChoices.length*Math.random()))];
 
 		
 		document.onkeyup = function(event) {
@@ -13,34 +16,47 @@
 
 
 			var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
-			var randomComputerChoice = computerChoices [(Math.floor(computerChoices.length*Math.random()))];
 
 			yourGuessesSoFar.push(userGuess);
 
-			if(userGuess == randomComputerChoice){
-				document.getElementById('wins').innerHTML = "wins = " + wins;
-				wins++;
-				guessesLeft = 9;
-				yourGuessesSoFar = [];
 
+
+			yourGuessesSoFar.toString();
+			document.getElementById('yourGuessesSoFar').innerHTML = "Your guesses so far: "+yourGuessesSoFar;
+
+
+
+
+			if(userGuess == randomComputerChoice){
+				wins++;
+				yourGuessesSoFar = [];
+				document.getElementById('wins').innerHTML = "Wins: " + wins;
+				guessesLeft = 9;
 				alert("You won!");
+				document.getElementById('guessesLeft').innerHTML = "Guesses Left: 9";
+				document.getElementById('yourGuessesSoFar').innerHTML = "Your guesses so far: ";
+
 
 
 			}
 
-			else if (userGuess !== randomComputerChoice) {
+			if (userGuess !== randomComputerChoice) {
 
 				guessesLeft--;
-				document.getElementById('guessesLeft').innerHTML = "guessesLeft = " + guessesLeft;
+				document.getElementById('guessesLeft').innerHTML = "Guesses Left: " + guessesLeft;
 			}
 
 
-			else  if(guessesLeft==0){
-				document.getElementById('loses').innerHTML = loses;
+			if(guessesLeft==0){
 				loses++;
+				yourGuessesSoFar = [];
+				document.getElementById('losses').innerHTML = "Losses: " + loses;
 				alert('you lost sucka');
 				guessesLeft = 9;
-				yourGuessesSoFar = [];
+				document.getElementById('guessesLeft').innerHTML = "Guesses Left: "+guessesLeft;
+				document.getElementById('yourGuessesSoFar').innerHTML = "Your guesses so far: ";
+
+
 			}
 
 			
